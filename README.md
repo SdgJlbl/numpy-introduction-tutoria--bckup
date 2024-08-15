@@ -196,6 +196,8 @@ to go at your own pace.
 
 This content is vastly inspired by [Maria Telenczuk's tutorial](https://github.com/maikia/numpy-demo?).
 
+Many thanks to @ewjoachim for his thoughtful review and comments.
+
 ## License
 
 <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/80x15.png" /></a><br />
