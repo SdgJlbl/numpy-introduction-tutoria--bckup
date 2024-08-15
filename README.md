@@ -27,7 +27,7 @@ Here are some options. Choose one of them:
 - Native Windows Python: see
   [Microsoft's doc](https://learn.microsoft.com/en-us/windows/python/beginners)
 
-In both cases, this will let you run an Ubuntu terminal on your Windows
+In the first two cases, this will let you run an Ubuntu terminal on your Windows
 machine, which you can use to run the commands below.
 
 On **Mac OS**, you can use the built-in terminal, and install most tools
@@ -44,7 +44,7 @@ If it's not already done, install `git` on your machine.
 
 **Windows** (if you're not using WSL or Docker): Consult the [official website](https://git-scm.com/download/win)
 
-**Debian/Ubuntu**: `sudo apt install git` for Debian-based distributions.
+**Debian/Ubuntu/WSL**: `sudo apt install git` for Debian-based distributions.
 
 Then, open your terminal, go to your working folder, and clone this repository by running the following command:
 
@@ -97,7 +97,7 @@ The Jupyter interface should open in your default browser.
 
 ##### An alternative to miniconda: pyenv + venv
 
-(Note: `pyenv` do not work on Windows natively but works fine on WSL or Docker)
+(Note: `pyenv` does not work on Windows natively but works fine on WSL or Docker)
 
 Follow the
 [instructions](https://github.com/pyenv/pyenv?tab=readme-ov-file#installation)
