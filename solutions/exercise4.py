@@ -12,4 +12,5 @@ print(last_column_reversed)
 result = np.column_stack([first_column, last_column_reversed])
 print(result)
 # as a one-liner
+# It's cool but hard to read
 print(np.column_stack([a[:, 0], a[:, -1][::-1]]))

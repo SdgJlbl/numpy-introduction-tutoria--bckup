@@ -1,17 +1,22 @@
 import numpy as np
 
 # option 1
-result = np.ones((3, 4)) * 2
-result[0, -1] = 3
-print(result)
-
-# option 2
 result = np.zeros((3, 4))
 result[:, :] = 2
 result[0, -1] = 3
 print(result)
 
-# do not do that (mixing Python for-loop and NumPy -> bad performance)
+# option 2
+result = np.full((3, 4), 2)
+result[0, -1] = 3
+print(result)
+
+# option 3 (spoiler: we'll cover `array * value` in the next chapter)
+result = np.ones((3, 4)) * 2
+result[0, -1] = 3
+print(result)
+
+# bad option 4: do not do that (mixing Python for-loop and NumPy -> bad performance)
 result = np.zeros((3, 4))
 for i in range(3):
     for j in range(4):
@@ -21,7 +26,8 @@ for i in range(3):
             result[i, j] = 2
 print(result)
 
-# this is better (create a list of list in Python, then move everything to NumPy in one go)
+# pure python option 5: this is better (create a list of list in Python, then
+# move everything to NumPy in one go)
 result_list = []
 for i in range(3):
     result_list.append([])
