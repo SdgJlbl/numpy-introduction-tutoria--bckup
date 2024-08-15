@@ -12,18 +12,39 @@ The workshop is designed to be interactive and hands-on.
 
 ### Local mode (recommended)
 
+#### Choose your environment
+
+If you already have installed Python and standard tools (such as `git`), you probably
+already have made those choices. If not, here are some recommendations.
+
+On **Windows**, you can run many of the tools natively, but some tools are more
+comfortable to use in a Unix-like environment. There will be a few terminal
+commands in the rest of the tutorial, they will be given in a Unix-like format.
+Here are some options. Choose one of them:
+- [Windows Subsystem for Linux](https://learn.microsoft.com/en-us/windows/wsl/install)
+  (WSL) (recommended)
+- [Docker](https://docs.docker.com/desktop/install/windows-install/)
+- Native Windows Python: see
+  [Microsoft's doc](https://learn.microsoft.com/en-us/windows/python/beginners)
+
+In both cases, this will let you run an Ubuntu terminal on your Windows
+machine, which you can use to run the commands below.
+
+On **Mac OS**, you can use the built-in terminal, and install most tools
+using [Homebrew](https://brew.sh/).
+
+On **Linux**, you can use the built-in terminal, and install most tools
+using your package manager (e.g., `apt` on Ubuntu).
+
 #### Clone the repository
 
 If it's not already done, install `git` on your machine.
 
-On Linux: 
-- `sudo apt install git-all` for Debian-based distributions.
-- `sudo dnf install git-all` for Fedora.
+**Mac OS**: `brew install git`.
 
-On macOS, install [Homebrew](https://brew.sh/) and run `brew install git`. It will also install the Xcode Command Line Tools 
-(development tools for MacOS).
+**Windows** (if you're not using WSL or Docker): Consult the [official website](https://git-scm.com/download/win)
 
-On Windows, download the installer from the [official website](https://git-scm.com/download/win) and run it.
+**Debian/Ubuntu**: `sudo apt install git` for Debian-based distributions.
 
 Then, open your terminal, go to your working folder, and clone this repository by running the following command:
 
@@ -37,7 +58,7 @@ This will create a new folder named `numpy-introduction-tutorial`, and you can m
 $ cd numpy-introduction-tutorial
 ```
 
-#### Install the required packages
+#### Install Python and the required packages
 
 This tutorial requires a Python env (Python 3.12) with the following packages installed:
 - numpy 2.26.4
@@ -53,17 +74,18 @@ You can also use `pyenv` + `venv` as an alternative.
 
 ##### With miniconda
 
-Follow the [instructions](https://docs.anaconda.com/miniconda/miniconda-install/) for your OS to install miniconda.
+Follow the
+[instructions](https://docs.anaconda.com/miniconda/miniconda-install/) for your
+OS to install miniconda.
 
-Create a new environment with Python 3.12:
+Create a new environment with Python 3.12 (launch this command once):
 
 ```console
 $ conda create -n numpy-tutorial python=3.12 numpy=1.26.4 jupyter=1.0.0
-$ conda activate numpy-tutorial
-$ jupyter notebook
 ```
 
-Activate your conda environment and start the Jupyter notebook:
+Every time you want to work on the tutorial in a new terminal, activate your
+conda environment and start the Jupyter notebook:
 
 ```console
 $ conda activate numpy-tutorial
@@ -73,9 +95,13 @@ $ jupyter notebook
 The Jupyter interface should open in your default browser.
 
 
-##### With pyenv + venv (alternative for MacOS and Linux)
+##### An alternative to miniconda: pyenv + venv
 
-Follow the [instructions](https://github.com/pyenv/pyenv?tab=readme-ov-file#installation) to install `pyenv`.
+(Note: `pyenv` do not work on Windows natively but works fine on WSL or Docker)
+
+Follow the
+[instructions](https://github.com/pyenv/pyenv?tab=readme-ov-file#installation)
+to install `pyenv`.
 
 Then, install Python 3.12 with `pyenv`:
 
@@ -93,19 +119,16 @@ Create a new virtual environment with Python 3.12:
 
 ```console
 $ python -m venv numpy-tutorial
-$ source numpy-tutorial/bin/activate
-$ pip install numpy==1.26.4 jupyter==1.0.0
+$ numpy-tutorial/bin/pip install numpy==1.26.4 jupyter==1.0.0
 ```
 
-Start the Jupyter notebook:
+Every time you want to work on the tutorial in a new terminal, activate your
+environment and start the Jupyter notebook:
 
 ```console
+$ source numpy-tutorial/bin/activate
 $ jupyter notebook
 ```
-
-
-
-**TODO**
 
 ### Using JupyterLite
 
@@ -113,29 +136,61 @@ If you don't want to install anything on your machine, you can follow along usin
 
 **more TODO**
 
-## Jupyter commands cheat sheet
+## Jupyter commands crash course
 
 * Starting Jupyter notebook from your terminal (with your environment activated):
 ```console
 $ jupyter notebook
 ```
 
-* Stopping the Jupyter notebook server: `Ctrl + C` twice
+* This will open a new tab in your default browser with the Jupyter interface.
+  You will see the files in the current directory. Click on the notebook you
+  want to open or create a new one (`New` -> `Python 3 (...)`).
 
-* Jupyter notebook commands:
+* When you're in a notebook, you can create, move and delete cells. Cells
+  contain either code or instructions. You can execute the code in a cell with
+  `Shift + Enter`.
 
-    * `Esc` : takes you into command mode, there you can use:
+* Be careful: When a cell is selected, either you're typing code in it (edit
+  mode), or it's just selected (command mode). In command mode, typing some
+  letters will trigger commands instead of typing them in the cell. If you're
+  typing in a cell and nothing happens, you're probably in command mode. Press
+  `Enter` to go back to edit mode. From edit mode, press `Esc` to go back to
+  command mode from edit mode.
 
-            a : insert a new cell above
-            b : insert a new cell below
-            m : change the current cell to Markdown
-            y : change the current cell to code`
+Command mode:
+![command mode](images/command_mode.png)
 
-    * `Enter` : go back to edit mode
+Edit mode:
+![edit mode](images/edit_mode.png)
 
-    * `Shift + Enter` : execute the cell, move to the cell below
+* Sometimes, you'll find that you can't execute a cell. It's probably because
+  it was inadvertently set to Markdown mode. You'll see the dropdown menu at the
+  top of the screen say "Markdown". Change it to `Code` to be able to execute the cell.
 
-* Uncommenting (= removing the `#`) the line `# %load filename.py` in a cell and executinf the cell will load the solution to an exercise if you're stuck.
+Cell in Markdown mode:
+![markdown mode](images/cell_markdown.png)
+
+Cell in Code mode:
+![code mode](images/cell_code.png)
+
+* On exercise cells, they will often be followed by `# %load filename.py`. If
+  you're stuck, you can uncomment (i.e. remove the initial `#`) this line and
+  execute (`Shift + Enter`) the cell to load the solution.
+
+* Stopping the Jupyter notebook server: `Ctrl + C` twice in the terminal where you launched it.
+
+## How to follow the workshop
+
+We will go through the notebooks together. You will be able to execute the code
+in the cells, and you can also modify it to experiment with the concepts we'll
+cover. In the exercises, you will have to complete the code to make it work.
+
+At any time, you can ask questions if you're stuck or if you want to know more
+about a specific topic.
+It's perfectly fine if you want to go faster, there is a lot of material in
+the notebooks, and we won't have time to cover everything anyway, so feel free
+to go at your own pace.
 
 ## Special thanks
 
